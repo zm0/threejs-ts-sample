@@ -17,6 +17,14 @@ scene.add( cube )
 
 camera.position.z = 2
 
+const handleWindowResize = () => {
+  camera.aspect = window.innerWidth / window.innerHeight
+  camera.updateProjectionMatrix()
+  renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.render(scene, camera)
+}
+window.addEventListener('resize', handleWindowResize, false)
+
 function animate() {
   requestAnimationFrame( animate )
 
