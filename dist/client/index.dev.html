@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PROD</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
-  </style>
+  <title>DEV</title>
 </head>
 <body>
+  <script src="socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+  </script>
+  <script type="module" src="socket-logic.js"></script>
   <script type="module" src="client.js"></script>
 </body>
 </html>

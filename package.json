@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently -k \"yarn transpile-server:watch\" \"yarn transpile-client:watch\" \"yarn start:nodemon\"",
+    "dev": "NODE_ENV=development concurrently -k \"yarn transpile-server:watch\" \"yarn transpile-client:watch\" \"yarn start:nodemon\"",
     "start:nodemon": "nodemon dist/server/server",
     "transpile-client:watch": "tsc -p ./src/client -w",
     "transpile-server:watch": "tsc -p ./src/server -w",
-    "start": "yarn transpile-server && yarn transpile-client && node dist/server/server",
+    "start": "yarn transpile-server && yarn transpile-client && PORT=3001 NODE_ENV=production node dist/server/server",
     "transpile-client": "tsc -p ./src/client",
     "transpile-server": "tsc -p ./src/server",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,7 +17,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/socket.io": "^2.1.12",
     "express": "^4.17.1",
+    "socket.io": "^3.0.4",
+    "socket.io-client": "^3.0.4",
     "three": "^0.124.0"
   },
   "devDependencies": {

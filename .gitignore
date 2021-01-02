@@ -1,5 +1,6 @@
 node_modules
 dist/client/*
 !dist/client/index.html
+!dist/client/index.dev.html
 dist/server/*
 !dist/server/.gitkeep

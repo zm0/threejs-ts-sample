@@ -1,8 +1,12 @@
 import http from 'http'
 import path from 'path'
 import express from 'express'
+import socketIO from 'socket.io'
+// import fs from 'fs'
 
-const port: number = 3000
+const isDev = process.env.NODE_ENV === 'development'
+const PORT: string = process.env.PORT
+const port: any = PORT ? Number(PORT) : 3000
 
 class App {
   private server: http.Server
@@ -12,10 +16,18 @@ class App {
     this.port = port
     const app = express()
 
+    if (isDev) {
+      app.get('/', function(_req, res) {
+        res.redirect(301, '/index.dev.html')
+      });
+    }
     app.use(express.static(path.join(__dirname, '../client')))
+
     app.use('/build/three.module.js', express.static(path.join(__dirname, '../../node_modules/three/build/three.module.js')))
     app.use('/jsm/controls/OrbitControls', express.static(path.join(__dirname, '../../node_modules/three/examples/jsm/controls/OrbitControls.js')))
     this.server = new http.Server(app)
+
+    if (isDev) new socketIO.Server(this.server)
   }
 
   public Start() {
