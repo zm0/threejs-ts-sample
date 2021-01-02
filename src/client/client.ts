@@ -33,7 +33,11 @@ document.body.appendChild(stats.dom)
 const gui = new GUI()
 // gui.add(cube.rotation, 'x', 0, Math.PI * 2, 0.01)
 const cubeFolder = gui.addFolder('Cube')
-cubeFolder.add(cube.rotation, 'x', 0, Math.PI * 2, 0.01)
+const cubeRotationFolder = cubeFolder.addFolder('Rotation')
+cubeRotationFolder.add(cube.rotation, 'x', 0, Math.PI * 2, 0.01)
+cubeRotationFolder.add(cube.rotation, 'y', 0, Math.PI * 2, 0.01)
+cubeRotationFolder.add(cube.rotation, 'x', 0, Math.PI * 2, 0.01)
+cubeFolder.open()
 
 function animate() {
   requestAnimationFrame( animate )
