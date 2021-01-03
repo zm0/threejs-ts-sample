@@ -11,8 +11,15 @@ renderer.setSize( window.innerWidth, window.innerHeight )
 document.body.appendChild( renderer.domElement )
 
 const controls = new OrbitControls(camera, renderer.domElement)
-
-const geometry = new THREE.BoxGeometry()
+const cubeData: { [key: string]: number } = {
+  width: 1,
+  height: 1,
+  depth: 1,
+  widthSegments: 2,
+  heightSegments: 2,
+  depthSegments: 2,
+}
+const geometry = new THREE.BoxGeometry(...Object.values(cubeData))
 const material = new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } )
 const cube = new THREE.Mesh( geometry, material )
 scene.add( cube )
@@ -36,8 +43,22 @@ const cubeFolder = gui.addFolder('Cube')
 const cubeRotationFolder = cubeFolder.addFolder('Rotation')
 cubeRotationFolder.add(cube.rotation, 'x', 0, Math.PI * 2, 0.01)
 cubeRotationFolder.add(cube.rotation, 'y', 0, Math.PI * 2, 0.01)
-cubeRotationFolder.add(cube.rotation, 'x', 0, Math.PI * 2, 0.01)
+cubeRotationFolder.add(cube.rotation, 'z', 0, Math.PI * 2, 0.01)
 cubeFolder.open()
+const cubePropsFolder = cubeFolder.addFolder('Props')
+const regenerateBoxGeometry = () => {
+  const newGeometry = new THREE.BoxGeometry(...Object.values(cubeData))
+
+  cube.geometry.dispose()
+  cube.geometry = newGeometry
+}
+for (let key in cubeData) {
+  cubePropsFolder.add(cubeData, key, 1, 30)
+    .onChange(regenerateBoxGeometry)
+    .onFinishChange(() => {
+      console.dir(cube.geometry)
+    })
+}
 
 function animate() {
   requestAnimationFrame( animate )
