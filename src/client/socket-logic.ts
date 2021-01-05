@@ -14,6 +14,10 @@ function debounce(f: () => void, ms: number) {
   };
 }
 
+const debouncedReload = debounce(() => {
+  window.location.reload();
+}, 1000)
+
 // NOTE: Hot reload
 class SocketClient {
   private socket: SocketIOClient.Socket
@@ -29,9 +33,6 @@ class SocketClient {
     this.socket.on("disconnect", function (message: any) {
       console.log("disconnect " + message)
       // document.body.innerHTML += "Disconnected from Server : " + message + "<br/>"
-      const debouncedReload = debounce(() => {
-        window.location.reload();
-      }, 1000)
       debouncedReload()
     })
 
