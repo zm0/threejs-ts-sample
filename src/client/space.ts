@@ -21,6 +21,24 @@ export class Space {
     document.body.appendChild( this.renderer.domElement )
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+    this.controls.enableDamping = true
+    // this.controls.autoRotate = true
+    // this.controls.enableKeys = true
+    // this.controls.keys = {
+    //   // LEFT: 37,
+    //   // UP: 38,
+    //   // RIGHT: 39,
+    //   // BOTTOM: 40,
+    //   LEFT: 87,
+    //   UP: 65,
+    //   RIGHT: 68,
+    //   BOTTOM: 83,
+    // }
+    // this.controls.mouseButtons = {
+    //   LEFT: THREE.MOUSE.ROTATE,
+    //   MIDDLE: THREE.MOUSE.DOLLY,
+    //   RIGHT: THREE.MOUSE.PAN,
+    // }
     const cubeData: {[key: string]: number} = {
       width: 1,
       height: 1,
@@ -89,8 +107,8 @@ export class Space {
     this.animate()
   }
   _update() {
-    this.cube.rotation.x += 0.01;
-    this.cube.rotation.y += 0.01;
+    // this.cube.rotation.x += 0.01;
+    // this.cube.rotation.y += 0.01;
 
     this.controls.update()
     this.stats.update()
