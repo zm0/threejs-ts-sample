@@ -2,7 +2,6 @@
   "name": "threejs-ts-sample",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development concurrently -k \"yarn transpile-server:watch\" \"yarn transpile-client:watch\" \"yarn start:nodemon\"",
     "start:nodemon": "nodemon dist/server/server",
