@@ -55,7 +55,7 @@ export class Space {
     this.ambient = new THREE.AmbientLight(0x707070)
     const material = new THREE.MeshPhongMaterial({
       color: 0x00ff00,
-      wireframe: false,
+      wireframe: true,
     })
     this.cube = (new THREE.Mesh(geometry, material))
     // new a interaction, then you can add interaction-event with your free style
@@ -107,8 +107,8 @@ export class Space {
     this.animate()
   }
   _update() {
-    // this.cube.rotation.x += 0.01;
-    // this.cube.rotation.y += 0.01;
+    this.cube.rotation.x += 0.01;
+    this.cube.rotation.y += 0.01;
 
     this.controls.update()
     this.stats.update()

@@ -20,7 +20,8 @@
     "express": "^4.17.1",
     "socket.io": "^3.0.4",
     "socket.io-client": "^3.0.4",
-    "three": "^0.124.0"
+    "three": "^0.124.0",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@types/dat.gui": "^0.7.6",
